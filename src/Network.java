@@ -18,14 +18,35 @@ public class Network
 	
 	public void union(int p, int q)
 	{
-		int pid = connections[p];
-		int qid = connections[q];
-		
-		for(int i=0; i<connections.length; i++)
+		if(!connected(p,q))
 		{
-			if(connections[i] == qid)
-				connections[i] = pid;
+			int pid = connections[p];
+			int qid = connections[q];
+		
+			for(int i=0; i<connections.length; i++)
+			{
+				if(connections[i] == pid)
+					connections[i] = qid;
+			}
 		}
 	}
+	
+	//debug staff
+	public void print()
+	{
+		System.out.print("nodes:       ");
+		for(int i=0; i<connections.length; i++)
+		{
+			System.out.format("%02d ", i);
+		}
+		
+		System.out.print("\nconnections: ");
+		for(int i=0; i<connections.length; i++)
+		{
+			System.out.format("%02d ", connections[i]);
+		}
+		System.out.println();
+	}
+	
 }
 
