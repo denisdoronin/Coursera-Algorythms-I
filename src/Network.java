@@ -13,22 +13,25 @@ public class Network
 	
 	public boolean connected(int p, int q)
 	{
-	    return (connections[p] == connections[q]);	
+	    return (root(p) == root(q));	
 	}
 	
 	public void union(int p, int q)
 	{
 		if(!connected(p,q))
 		{
-			int pid = connections[p];
-			int qid = connections[q];
-		
-			for(int i=0; i<connections.length; i++)
-			{
-				if(connections[i] == pid)
-					connections[i] = qid;
-			}
+			connections[root(p)] = connections[root(q)];		
 		}
+	}
+	
+	private int root(int i)
+	{
+		while(i != connections[i])
+		{
+			i = connections[i];
+		}
+		
+		return i;
 	}
 	
 	//debug staff

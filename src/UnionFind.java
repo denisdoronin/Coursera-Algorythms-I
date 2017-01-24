@@ -8,6 +8,8 @@ public class UnionFind
 		Network uf = new Network(10);
 		
 		uf.union(1, 5);
+		uf.print();
+		
 		uf.union(3, 1);
 		uf.print();
 		
