@@ -2,12 +2,15 @@
 public class Network 
 {
 	private int connections[];
+	private int weights[];
 	public Network(int size)
 	{
 		connections = new int[size];
+		weights = new int[size];
 		for(int i=0; i<connections.length; i++)
 		{
 			connections[i] = i;
+			weights[i] = 1;
 		}
 	}
 	
@@ -20,7 +23,15 @@ public class Network
 	{
 		if(!connected(p,q))
 		{
-			connections[root(p)] = connections[root(q)];		
+			int p_root, q_root;
+			p_root = root(p);
+			q_root = root(q);
+			
+			if(weights[p_root] > weights[q_root])
+			{
+				connections[q_root] = connections[p_root];
+				weights[p_root] += weights[q_root];
+			}			
 		}
 	}
 	
